@@ -8,7 +8,7 @@ import google.generativeai as genai
 
 # --- Configuration ---
 COMBINED_TEXT_FILENAME = "all_pdf_text_combined.txt"
-MAX_CONTEXT_PARAGRAPHS = 5
+MAX_CONTEXT_PARAGRAPHS = 3
 AI_MODEL_NAME = 'gemini-2.0-flash'
 
 # Configure logging
@@ -19,15 +19,26 @@ logger = logging.getLogger(__name__)
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 
-# --- AI & PDF Logic ---
+# --- Load & cache PDF text once ---
+CACHED_FULL_TEXT = None
+
 def load_text_from_file(filename):
     try:
         with open(filename, "r", encoding="utf-8") as f:
-            return f.read()
+            text = f.read()
+            logger.info(f"Loaded text from {filename} (length: {len(text)})")
+            return text
     except Exception as e:
         logger.error(f"Error loading text file: {e}")
         return None
 
+def get_cached_full_text():
+    global CACHED_FULL_TEXT
+    if CACHED_FULL_TEXT is None:
+        CACHED_FULL_TEXT = load_text_from_file(COMBINED_TEXT_FILENAME)
+    return CACHED_FULL_TEXT
+
+# --- Text processing ---
 def find_relevant_paragraphs(full_text, question, max_paragraphs):
     paragraphs = [p.strip() for p in full_text.split("\n\n") if p.strip()]
     keywords = set(q.lower() for q in question.split() if len(q) > 2)
@@ -38,27 +49,37 @@ def find_relevant_paragraphs(full_text, question, max_paragraphs):
             if len(relevant) >= max_paragraphs:
                 break
     if not relevant:
-        return paragraphs[:max_paragraphs]
+        relevant = paragraphs[:max_paragraphs]
     return relevant
+
+def find_youtube_links(text):
+    """Find all YouTube URLs in the given text."""
+    youtube_regex = r"(?:https?://)?(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]+)(?:\S+)?"
+    links = re.findall(youtube_regex, text)
+    full_links = [f"https://www.youtube.com/watch?v={link_id}" for link_id in links]
+    unique_links = list(set(full_links))
+    if unique_links:
+        logger.info(f"Found YouTube links in context: {unique_links}")
+    return unique_links
 
 def construct_prompt(context_paragraphs, question, youtube_links):
     context = "\n\n".join(context_paragraphs)
     links_text = ""
     if youtube_links:
-        links_text = "\n\nPotential relevant YouTube links:\n" + "\n".join(youtube_links)
-    prompt = f"""You are Jenny, Sal's Personal Assistant. Answer the question based only on the following excerpts:
+        links_text = "\n\nRelevant YouTube links found in the documents:\n" + "\n".join(youtube_links)
+    prompt = f"""You are Jenny, Sal's Personal Assistant. You have expert knowledge of the following documents. Please answer the user's question *only* using the information from these excerpts.
 
---- TEXT EXCERPTS ---
+--- DOCUMENT EXCERPTS ---
 {context}
---- END TEXT EXCERPTS ---
+--- END OF EXCERPTS ---
 
 {links_text}
 
 User's question: {question}
 
-Answer naturally, conversationally. If a relevant YouTube link supports your answer, include only that link at the end.
+Please respond clearly, helpfully, and in a warm conversational tone as Jenny. Do NOT speculate or provide information outside these documents. If a relevant YouTube link supports your answer, include only the most relevant link at the end.
 
-Jenny's Answer:"""
+Jenny's answer:"""
     return prompt
 
 def get_ai_response(api_key, prompt):
@@ -109,14 +130,14 @@ class handler(BaseHTTPRequestHandler):
 
             if chat_id and text:
                 if text.startswith('/start'):
-                    reply = "Hey! I am Jenny, Sal's Personal Assistant. How can I help you today?"
+                    reply = "Hey! I'm Jenny, Sal's Personal Assistant. How can I help you today?"
                 else:
-                    full_text = load_text_from_file(COMBINED_TEXT_FILENAME)
+                    full_text = get_cached_full_text()
                     if not full_text:
                         reply = "Sorry, I couldn't load the documents right now."
                     else:
                         relevant = find_relevant_paragraphs(full_text, text, MAX_CONTEXT_PARAGRAPHS)
-                        youtube_links = []  # optionally implement find_youtube_links(text)
+                        youtube_links = find_youtube_links("\n\n".join(relevant))
                         prompt = construct_prompt(relevant, text, youtube_links)
                         reply = get_ai_response(GOOGLE_API_KEY, prompt)
 
