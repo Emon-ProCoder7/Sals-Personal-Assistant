@@ -15,11 +15,11 @@ AI_MODEL_NAME = 'gemini-2.0-flash'
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Get environment variables
+# Environment variables
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 
-# --- Load & cache PDF text once ---
+# --- Cache the PDF text once ---
 CACHED_FULL_TEXT = None
 
 def load_text_from_file(filename):
@@ -38,7 +38,7 @@ def get_cached_full_text():
         CACHED_FULL_TEXT = load_text_from_file(COMBINED_TEXT_FILENAME)
     return CACHED_FULL_TEXT
 
-# --- Text processing ---
+# --- Text & YouTube processing ---
 def find_relevant_paragraphs(full_text, question, max_paragraphs):
     paragraphs = [p.strip() for p in full_text.split("\n\n") if p.strip()]
     keywords = set(q.lower() for q in question.split() if len(q) > 2)
@@ -53,7 +53,6 @@ def find_relevant_paragraphs(full_text, question, max_paragraphs):
     return relevant
 
 def find_youtube_links(text):
-    """Find all YouTube URLs in the given text."""
     youtube_regex = r"(?:https?://)?(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]+)(?:\S+)?"
     links = re.findall(youtube_regex, text)
     full_links = [f"https://www.youtube.com/watch?v={link_id}" for link_id in links]
@@ -62,12 +61,17 @@ def find_youtube_links(text):
         logger.info(f"Found YouTube links in context: {unique_links}")
     return unique_links
 
-def construct_prompt(context_paragraphs, question, youtube_links):
+def construct_prompt(context_paragraphs, question, youtube_links, user_mention):
     context = "\n\n".join(context_paragraphs)
     links_text = ""
     if youtube_links:
         links_text = "\n\nRelevant YouTube links found in the documents:\n" + "\n".join(youtube_links)
-    prompt = f"""You are Jenny, Sal's Personal Assistant. You have expert knowledge of the following documents. Please answer the user's question *only* using the information from these excerpts.
+
+    personalized_intro = f"Hi {user_mention}! "
+
+    prompt = f"""{personalized_intro}You are Jenny, Sal's Personal Assistant. A friendly, proactive, and highly intelligent female with a world-class engineering background.
+
+You have expert knowledge of the following company documents and YouTube transcripts. Please answer the user's question *only* using the information from these excerpts.
 
 --- DOCUMENT EXCERPTS ---
 {context}
@@ -77,7 +81,9 @@ def construct_prompt(context_paragraphs, question, youtube_links):
 
 User's question: {question}
 
-Please respond clearly, helpfully, and in a warm conversational tone as Jenny. Do NOT speculate or provide information outside these documents. If a relevant YouTube link supports your answer, include only the most relevant link at the end.
+If the question is outside the scope of the provided documents, politely explain that you can only assist with information from the company knowledge base and YouTube transcripts.
+
+Please respond clearly, helpfully, and in a warm conversational tone as Jenny. Include only the most relevant YouTube link if it directly supports your answer.
 
 Jenny's answer:"""
     return prompt
@@ -129,8 +135,15 @@ class handler(BaseHTTPRequestHandler):
             text = message.get('text')
 
             if chat_id and text:
+                # Get Telegram username or fallback to first name
+                user_name = message.get('from', {}).get('username')
+                if user_name:
+                    user_mention = f"@{user_name}"
+                else:
+                    user_mention = message.get('from', {}).get('first_name', 'there')
+
                 if text.startswith('/start'):
-                    reply = "Hey! I'm Jenny, Sal's Personal Assistant. How can I help you today?"
+                    reply = f"Hey {user_mention}! I'm Jenny, Sal's Personal Assistant. How can I help you today?"
                 else:
                     full_text = get_cached_full_text()
                     if not full_text:
@@ -138,7 +151,7 @@ class handler(BaseHTTPRequestHandler):
                     else:
                         relevant = find_relevant_paragraphs(full_text, text, MAX_CONTEXT_PARAGRAPHS)
                         youtube_links = find_youtube_links("\n\n".join(relevant))
-                        prompt = construct_prompt(relevant, text, youtube_links)
+                        prompt = construct_prompt(relevant, text, youtube_links, user_mention)
                         reply = get_ai_response(GOOGLE_API_KEY, prompt)
 
                 send_message(chat_id, reply)
