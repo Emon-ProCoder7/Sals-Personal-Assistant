@@ -134,27 +134,30 @@ class handler(BaseHTTPRequestHandler):
             chat_id = message.get('chat', {}).get('id')
             text = message.get('text')
 
-            if chat_id and text:
-                # Get Telegram username or fallback to first name
-                user_name = message.get('from', {}).get('username')
-                if user_name:
-                    user_mention = f"@{user_name}"
-                else:
-                    user_mention = message.get('from', {}).get('first_name', 'there')
+            # Get Telegram username or fallback to first name
+            user_name = message.get('from', {}).get('username')
+            user_first_name = message.get('from', {}).get('first_name', '')
+            if user_name:
+                user_mention = f"@{user_name}"
+            elif user_first_name:
+                user_mention = f"{user_first_name}"
+            else:
+                user_mention = "there"
 
-                if text.startswith('/start'):
-                    reply = f"Hey {user_mention}! I'm Jenny, Sal's Personal Assistant. How can I help you today?"
+            # Only greet once and continue conversation
+            if text.startswith('/start'):
+                reply = f"Hey {user_mention}! I'm Jenny, Sal's Personal Assistant. How can I help you today?"
+            else:
+                full_text = get_cached_full_text()
+                if not full_text:
+                    reply = "Sorry, I couldn't load the documents right now."
                 else:
-                    full_text = get_cached_full_text()
-                    if not full_text:
-                        reply = "Sorry, I couldn't load the documents right now."
-                    else:
-                        relevant = find_relevant_paragraphs(full_text, text, MAX_CONTEXT_PARAGRAPHS)
-                        youtube_links = find_youtube_links("\n\n".join(relevant))
-                        prompt = construct_prompt(relevant, text, youtube_links, user_mention)
-                        reply = get_ai_response(GOOGLE_API_KEY, prompt)
+                    relevant = find_relevant_paragraphs(full_text, text, MAX_CONTEXT_PARAGRAPHS)
+                    youtube_links = find_youtube_links("\n\n".join(relevant))
+                    prompt = construct_prompt(relevant, text, youtube_links, user_mention)
+                    reply = get_ai_response(GOOGLE_API_KEY, prompt)
 
-                send_message(chat_id, reply)
+            send_message(chat_id, reply)
 
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
