@@ -106,6 +106,194 @@ The Gifting Tribe Queries: If the question is about “The Gifting Tribe,” exp
 Use Knowledge base Details: Always reference the video knowledge base for these topics to ensure accuracy. For example, if the knowledge base outlines The Gifting Tribe’s purpose or Sal Khan’s involvement, use that exact information in your response. This keeps answers factual and on-topic.
 Including YouTube Video Links for More Information
 General FAQs about Pop Social and Pop Max
+
+🧠 INTRO TO POP SOCIAL & POPMAX
+Q: What is Pop Social really about?
+A: Think of Pop Social like a Web3 version of TikTok or Instagram—but better. You’re not just scrolling and wasting time. You’re owning your content, your data, and you even get paid for liking, sharing, and posting. It's social media with rewards built in.
+Video: https://www.youtube.com/watch?v=rBWM6SN7ICg
+
+Q: And PopMax? How is it different from Pop Social?
+A: PopMax is like the financial engine behind Pop Social. It's where users can stake tokens, earn daily returns, and build income. You don’t have to post or be an influencer—you can just stake your USDT and earn.
+Intro: https://www.youtube.com/watch?v=TkrHu1JV_zA
+
+Q: Why is this better than regular social media?
+A: Because with Pop Social, you actually own your data. You can create content, earn tokens, and not worry about platforms stealing your attention or deleting your page. Plus, even liking someone’s post earns you crypto rewards.
+
+Q: Is Pop Social live or just hype?
+A: It’s live. The beta app launched in Jan 2024. There are over 500,000 registered users and counting. It’s already listed on major exchanges. So yeah, it’s very real.
+Update: https://www.youtube.com/watch?v=OSfZgpFjjt8
+
+💸 STAKING & EARNING
+Q: Can I really earn daily profits with PopMax?
+A: Yes, 100%. You stake your crypto (USDT or PPT) and choose a plan. The longer you stake, the more you earn—up to 1% per day. It’s all smart contract based.
+Tutorial: https://www.youtube.com/watch?v=WC1f48ByPYk
+
+Q: I’m new. How do I start earning?
+A: Here’s the step-by-step:
+
+Get a Web3 wallet like MetaMask or Trust Wallet.
+
+Fund it with $100+ USDT and a few dollars of BNB for gas.
+
+Visit your referrer’s PopMax link and connect wallet.
+
+Choose a staking plan and deposit.
+Done! You’ll see earnings daily in your PUSD balance.
+
+Q: What’s PUSD? Is it like USDT?
+A: Kinda. PUSD is the platform’s internal stablecoin. 1 PUSD = 1 USDT, but you need to convert it to PPT to withdraw. It’s like your in-app earnings wallet.
+
+Q: Can I withdraw anytime?
+A: You can withdraw your profits from PUSD anytime. There’s a 10% fee on profits only. Your original stake (principal) is locked until the end of your plan—then you get it all back, no fee.
+
+🪙 TOKEN LOGIC & MONEY TALK
+Q: What’s the difference between PPT and PUSD?
+A: PPT is the native token of Pop Social—used for staking, trading, and rewards.
+PUSD is like your daily paycheck that you earn in the app. You convert it to PPT when you want to cash out.
+
+Q: Is PPT listed on any big exchange?
+A: Yes! PPT is already on:
+
+Bybit
+
+Bitget
+
+MEXC
+
+Gate.io
+
+BingX
+And it’s aiming for OKX and Binance soon.
+
+Q: Is this one of those “Ponzi” things? How’s it sustainable?
+A: Nope. The money doesn’t come from new users. They use smart contracts, trading profits from a liquidity pool, and burn tokens to reduce supply. It’s a real business model. Think of it like crypto-powered social media meets DeFi.
+
+Q: How much can I actually earn with referrals?
+A: You earn 15% from your direct referrals’ daily earnings and up to 82% if you build a team. And that’s not from what they deposit—it’s from their profits. Real win-win.
+Breakdown: https://www.youtube.com/watch?v=fSrqiqfz9fE
+
+🛠️ TECHNICAL STUFF
+Q: How do I convert my PUSD to real USDT?
+A: Easy:
+
+Go to your wallet inside PopMax.
+
+Convert PUSD to PPT.
+
+Withdraw PPT to your wallet.
+
+Sell PPT on Bybit, Gate.io, or any listed exchange for USDT.
+Swap guide: https://www.youtube.com/watch?v=y0O4IRzc6lM
+
+Q: Is it safe? Who audits this?
+A: PopMax’s smart contract is audited by Certik with a score of 79.97 (A grade). They’re one of the top security auditors in crypto.
+Check it on Skynet at certik.com.
+
+Q: What kind of wallet do I need to use PopMax?
+A: Any Web3 wallet that supports Binance Smart Chain—like MetaMask, Trust Wallet, SafePal, or BitGet. Make sure you have a little BNB for gas.
+
+Q: Do I have to buy both PPT and USDT to stake?
+A: Not anymore! You can now just deposit USDT, and the system auto-converts half into PPT for you. Simple.
+
+Q: What happens after my staking period ends?
+A: You get your principal back in full—no fees, no waiting. Meanwhile, you’ve earned daily profits the whole time.
+
+Q: What’s the point of keeping funds in PUSD pool?
+A: That’s where the magic of compounding happens. If you don’t withdraw, you get extra daily yield from the platform’s revenue pool. It’s like earning on your earnings.
+Yield examples:
+
+$2,000 in PUSD pool = ~$19.50/day
+
+$30,000 = ~$292/day
+
+ECOSYSTEM & ROADMAP
+Q: Is Pop Social just a platform or a whole ecosystem?
+A: It’s way more than a platform. Pop Social is the foundation. Around it are layers like:
+
+PopMax (rewards engine)
+
+Punk Words (NFT meets real-world culture)
+
+PopX (funding hub for Web3/AI projects)
+
+Pop Chain (its own AI-powered blockchain)
+It’s becoming an entire digital economy.
+
+Q: What’s Punk Words? Sounds weird.
+A: Punk Words is like a cultural bridge—connecting NFTs, digital collectibles, and street culture. It’s part of the Pop Social push to hit Nasdaq and bring Web2 users into Web3 with style.
+Reference: https://www.youtube.com/watch?v=OC6zubP9ufQ
+
+Q: What’s this about Nasdaq? That legit?
+A: Yup. The team’s roadmap includes listing the Pop ecosystem on the Nasdaq by the end of 2026. They’re working with real investment institutions to make it happen—not just crypto folks.
+
+Q: Who’s actually running this project?
+A: A stacked team:
+
+Michael Shen (CEO): 8 years blockchain experience
+
+Dr. Joey Cho (CPO): PhD from MIT, ex-Apple
+
+Team includes ex-staff from Binance, OKX, Google, TikTok
+Investors include Chainlink, Fundamental Labs (early Coinbase investor), and S Ventures.
+
+Q: What’s the Pop Social timeline look like?
+A: Here's the roadmap in plain speak:
+
+2023: Funding secured, token launched
+
+2024: Beta app, NFT staking, PopMax goes live
+
+2025: Ecosystem expansion, 1B market cap goal, PopChain testnet
+
+2026: Mainnet launch, Nasdaq listing, $3-5B market cap target
+
+Q: What’s the deal with token supply and burn?
+A: Smart economics. Here’s what they’re doing:
+
+Total supply: 200M PPT
+
+Goal: Burn down to 100M max
+
+10% of tokens used in staking/NFT synthesis are burned
+
+Less supply = more scarcity = higher price potential
+Video: https://www.youtube.com/watch?v=ltQWZAgAkVI&t=680s
+
+Q: Why are people calling this the “Web3 TikTok + Telegram”?
+A: Because it’s exactly that: a hybrid platform for short videos, messaging, and social interaction—except here, your engagement earns you money. No ads in your face, no privacy invasion, just clean Web3 social experience.
+
+Q: Is this big in any region already?
+A: Huge in Southeast Asia—Vietnam, China, and South Korea are already blowing it up. The English-speaking world is just catching on. You’re early.
+
+Q: Can I use this if I’m not tech-savvy?
+A: Totally. PopMax was made for everyday people. No crypto background needed. The app takes care of conversions, auto-matching, and even guides you through with videos.
+Beginner guide: https://www.youtube.com/watch?v=J8HsUKGCV0M
+
+Q: How does Pop Social handle privacy?
+A: Your data is stored on Web3 infrastructure—not on centralized servers. You choose what to share, and you even get paid for sharing if you want. Your identity is also decentralized, meaning it can’t be banned or deleted.
+
+ONBOARDING & WALKTHROUGHS
+Q: I want to try. What do I need to get started?
+A: You just need:
+
+A Web3 wallet (MetaMask, Trust Wallet, Bitget)
+
+At least $100 USDT on Binance Smart Chain
+
+A few dollars of BNB for gas
+Then visit your referrer’s link and stake inside PopMax.
+
+Q: Any video that walks me through the entire setup?
+A: Absolutely. This one covers signup, staking, NFT minting, and withdrawals:
+Watch: https://www.youtube.com/watch?v=WC1f48ByPYk
+
+Q: How do I help someone else get started?
+A: Just send them your referral link. The app handles tracking, rewards, and lets them stake with 100% USDT. No complicated buying of PPT needed anymore.
+
+Q: Can I do this completely from my phone?
+A: Yep. Everything—from wallet to staking to withdrawals—works on mobile. MetaMask mobile or Trust Wallet is all you need.
+
+
 Q: What is Pop Social?
 A: Pop Social is a next-generation social media platform that combines Web3 blockchain and AI to reward users for their time and content. It’s like a Web3-powered TikTok and Telegram rolled into one, where you actually own your data and get paid for your activity.
 
@@ -198,6 +386,7 @@ A: Because of token burning, staking locking up supply, expanding use cases acro
 
 Q: When is the full Pop Social app launching?
 A: The beta is live since early 2024, and the full version is expected before the end of 2025.
+
 
 Community & Events
 Q: Are there any upcoming Pop Social or Pop Max events?
