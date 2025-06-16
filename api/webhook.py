@@ -359,7 +359,7 @@ class handler(BaseHTTPRequestHandler):
                 add_to_history(chat_id, "user", text)
 
                 if text.startswith('/start'):
-                    reply = f"Hey {user_full_name}! I'm Jenny, Sal's Personal Assistant. How can I help you today?"
+                    reply = f"Hey {user_full_name}! I'm Cynthia, Sales Coordinator. How can I help you today?"
                 else:
                     full_text = get_cached_full_text()
                     if not full_text:
